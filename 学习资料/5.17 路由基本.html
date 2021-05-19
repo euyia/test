@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title><script src="vue/vue.js">
+/*href 里面的就是哈希值，工作靠谱
+要三个月啊。熟练。。。多用点心啊。
+
+*/
+    </script>
+</head>
+<body>
+ <a href="#/login">登录页面</a>
+ <a href="#/register">注册页面</a>
+
+    <div id="app"></div>
+</body>
+<script>
+    var oDiv=document.getElementById("app");
+
+   window.onhashchange=function(){ 
+       //哈希值变化会运行这个函数 路由发生改变的时候就会触发。*href 里面的就是哈希值 的改变
+       console.log(location.hash)//这个可以看到hash的改变
+       switch(location.hash){
+case"#/login":
+oDiv.innerHTML='<h2>我是登录页面</h2>'
+break;
+case"#/register":
+oDiv.innerHTML='<h2>我是注册页面</h2>'
+break;
+default:
+break
+       }
+      
+   }
+</script>
+</html>

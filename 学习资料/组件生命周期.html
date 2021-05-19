@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue/vue.js">
+/*  生命周期，也就是对dom渲染的整个时机的过程。
+*/
+    </script>
+</head>
+<body>
+ 
+    <div id="app">
+        <App></App><!--这样写 取代最下面template:"<App/>",-->
+    </div>
+</body>
+<script>
+    Vue.component('Test',{
+        data(){
+            return{
+                    msg:"hello world"
+            }
+        },
+        template:`   <div><div>{{msg}}</div></div>`,
+        beforeCreate:function(){
+//组件创建之前  这个一般很少用。。组件创建之前。。能有啥事情
+/* 想不通就像过了。。。beforeCreate。。。这个一样。。不要浪费时间在那发呆。*/
+                               console.log(this.msg)
+                               //这个时候是只有空壳 。里面还没有加载数据。
+        },
+        created:function(){
+                               console.log(this.msg)
+                               /*
+                               这个就经常用 。发起ajax请求。
+                              1 使用该组件就会调用careted方法
+                              2created 可以操作后端的数据，数据驱动视图
+                              3应用：发起ajax请求 保存数据！？*/
+        },
+        beforeMount:function(){
+            console.log(document.getElementById("app"))
+            //这是挂载之后  渲染之前。。也就是东西没有渲染到body上。
+        },
+        mounted:function(){
+            console.log(document.getElementById("app"))
+        }
+    })
+    var App={
+         data(){
+             return{
+
+             }
+         },
+         templata:`  <div class="app">
+            <Test/></div>   `,
+
+    }
+    new Vue({
+        el:"#app",
+        data(){
+            return {
+
+            }
+        },
+       // template:"<App/>",
+        components:{
+            App
+        }
+
+        
+    })
+</script>
+</html>

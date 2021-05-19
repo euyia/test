@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue/vue.js"></script>
+</head>
+<body>
+    <div id='app'></div>
+  
+</body>
+<script>//退格的快捷键。。不用方向键。位置不好。设置成f2 
+//人生就像倒计时。。早点想好想完成什么。不要到了倒数3分钟 才想起来要延时，是没有的
+//大内的教材 有空都可以看完。。开卷有益。付费 的 都有收获。
+
+    var Vcontent={
+        template:` <div>content</div>`,
+    };
+    var Vasider={
+ template:` <div>sider</div>`,
+    };
+    var App={
+        template:`<div><Vcontent/><Vasider/></div>`,
+        component:{//它说是引入。感觉。感觉没啥必要。。全局组件就不用。。这边不能复数
+            Vcontent,
+            Vasider,
+        }
+    };
+    new Vue({
+        el:'#app',
+        data(){
+            return{
+
+            }
+        },
+        template:`<App/>`,//这大小写。。要注意啊
+        components:{
+            App
+        }
+    })
+</script>
+</html>

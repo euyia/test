@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title><style>
+.bgred {
+  background-color: red;
+}
+.fblue {
+  color: blue;
+}
+</style>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <!--这个为什么不能直接把：后面的省略掉？？？可以省略前面的，他只不过是
+    在class里面先赋值一次。然后在style里面用缩写而已
+其实这样收益很小。。只留后面赋值部分就行了。。前后：调过来。又不行。。我擦-->
+<span :class="{backgroundred：bgred , fontblue：fblue}" >一些文本</span>
+</div>
+</body>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            backgroundred: 1,
+                fontblue:true
+        }
+        });
+    
+    setTimeout(()=>{
+        vm.backgroundred = 0;
+        vm.fontblue = false;
+    }, 3000);
+    </script>
+</html>

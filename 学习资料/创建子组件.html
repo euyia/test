@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+</body>
+<script>
+    var 
+    var App={
+        template:
+           '<div>入口组件</div>' 
+           //外面这个单引号 好像分开写就不行了
+        
+    };
+    new Vue({
+        //这个vue是所有组件的老祖宗
+        el:'#app',
+        data(){
+
+        },
+        components:{
+            App
+        },
+        template:'<App/>'//这个app是入口组件。这里是使用 所以上面要先声明
+    })
+</script>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue/vue.js"></script>
+</head>
+<div id="app"></div>
+    
+</body>
+<script>
+/*Vue.component('Child',{
+   
+    template:`<div>子组件的文档<p><input type="text" v-model='childDate'></p></div>`,
+    props:['childDate']
+    
+})
+Vue.component('Parent',{
+    data(){
+      return{
+          msg:'父组件msg'
+      }  
+    },
+    template:`<div><p><Child :childDate='msg'/></p></div>`,
+
+})*/
+
+    var App={
+        template:`    <div><input type="number" v-model='price'/>
+            <h3>{{price|myCurrentcy}}</h3></div>`,
+            
+        data(){
+            return{
+                price:0
+            }
+        },
+        filters:{//有s。。。
+            //1声明过滤器2 在上面设置price双向。 然后格式是{{属性|过滤器的名字}}
+            myCurrentcy:function(value){
+                return "￥"+value
+
+            }
+
+        }
+    }
+    new Vue({
+        el:'#app',
+        data(){
+            return{//这里也是变量。。
+
+            }
+        },
+        components:{
+            App
+        },
+        template:'<App/>'
+    })
+</script>
+</html>

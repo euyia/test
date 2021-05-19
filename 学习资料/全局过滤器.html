@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue/vue.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    
+    
+</body>
+<script>//全局过滤器 应用的地方比如很多组件需要很经常经常对时间格式进行处理。就可以把那些库 放进这个filter的函数里面
+/* 1先声明一个filter
+、2然后去挂在你要显示的地方 里面写好{{属性|函数名}}
+3然后通过这个函数名，来声明的地方 注意括号里面的格式，
+然后注意arg value。和msg之间的联系方式*/
+Vue.filter('myReverse',function(value,arg){//这个arg就是传那个哈哈哈 的值
+    return arg+""+value.split('').reverse().join('');
+    // join又写成jion。。。。！！！
+})
+    var App={
+        template:`<div><input type="number" v-model='price'>
+            <h3>{{price|myCurrentcy}}</h3>
+            <h4>{{msg|myReverse('哈哈哈')}}</h4></div>`,
+            //这个template 感觉就像body一样 只不过写在了脚本里面。。
+        data(){
+            return{
+                price:0,
+                msg:'hello filter!'
+            }
+        },
+        filters:{
+            myCurrentcy:function(value){// 这个value又是怎么来的。
+          return "￥"+value
+            }
+        }
+    }
+    new Vue({
+        el:'#app',
+        data(){
+            return{//里面也是一个变量。。
+
+            }
+        },
+        components:{
+            App
+        },
+        template:"<App/>",
+    })
+</script>
+</html>

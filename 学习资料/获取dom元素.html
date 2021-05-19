@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title><script src="vue/vue.js">
+    /*这里所的两个事情。。ref是reference的缩写 是查询 提及，说到的事情。
+    差不多就是对绑定的元素的说明，或者直接绑定的东西在dom里面的体现。
+    1是ref 作为属性 分别获标签属性，称作原生jsDom对象。也就是获取整个标签的信息，
+    2是ref放在比如全局组件里面。。获取的是那个组件，
+    做it的别问很低级的问题 很丢人
+    响应速度要好，
+    想清楚为什么会愿意如此。it职业的
+    我还是不怎么能理解*/
+
+    </script>
+</head>
+<body>
+    
+    <div id="app"></div>
+</body>
+<script>
+    Vue.component("Test",{
+        data(){
+            return{
+                    msg:"hello world"
+            }
+        },
+        template:`   <div><div>{{msg}}</div></div>`
+    })
+    var App={
+         data(){
+             return{
+
+             }
+         },
+         template:`  <div class="app">
+            <button ref="btn">我是按钮1</button>
+            <button ref="btn2">我是按钮2</button>
+            <Test ref="abc"/></div>   `,//ref 是给button加的属性。reference n名词.
+//说到(或写到)的事;提到;谈及;涉及;参考;查询;查阅;(帮助或意见的)征求，征询
+            created(){//这边不用冒号function吗
+                    console.log(this.$refs.btn)//$refs就是所有有ref的属性的。获取btn这个对象
+            },
+           beforeMount:function(){//为啥这里又要function？？？？？
+            console.log(this.$refs.btn)
+            },
+            mounted(){//如果给标签绑定ref="xxx"属性，使用this.$refs.xxx来获取jsDom对象。
+            //ref属性值 不能重名，不然会覆盖之前的。比如上面就只能读取第二个按钮。
+                console.log(this.$refs.btn)
+                console.log(this.$refs.btn2)
+                //如果给组件绑定ref 获取的就是当前的组件对象。
+                console.log(this.$refs.abc)
+
+            }
+
+    }
+    new Vue({
+        el:"#app",
+        data(){
+            return {
+
+            }
+        },
+        template:"<App/>",
+        components:{
+            App
+        }
+
+        
+    })
+</script>
+</html>

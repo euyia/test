@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title><script src="vue/vue.js"></script>
+</head>
+<body>
+    <div id="app"><audio src="getCurrentSongSrc" autoplay controls ></audio>
+<ul>
+    <li v-for='(item,index) in musicDate' @click="clickHandler(index)"><!--
+        为什么这里只有一个li但是
+    -->
+
+    </li>
+</ul>
+    </div>
+</body>
+<script>
+    var musicDate=[{id:1,name:'于梓贝 - 最爱 (Cover_ 周慧敏)',author:'于梓贝',songSrc:'mp3/于梓贝 - 最爱 (Cover_ 周慧敏).mp3'},
+       {id:2,name:'Tones and I - Dance Monkey',author:'Tones',songSrc:'mp3/Tones and I - Dance Monkey.mp3'},
+       {id:3,name:'The Glitch Mob _ Mako _ The Word Alive - RISE',author:'Glitch',songSrc:'mp3/The Glitch Mob _ Mako _ The Word Alive - RISE.mp3'},
+       {id:4,name:'Deep Side - Booty Music',author:'Deep',songSrc:'mp3/Deep Side - Booty Music.mp3'},
+    ];
+new Vue({
+    el:'#app',
+    data(){
+        return{
+            musicDate:musicDate,//data里面就是设置变量。？
+            currentIndex:0
+        }
+    },
+    computed:{
+        getCurrentSongSrc:function(){
+            return  this.musicDate[this.currentIndex].songSrc//返回这个songsrc？
+        }
+    },
+methods:{
+    clickHandler(index){
+        this.currentIndex=index;
+    }
+}
+})
+    
+</script>
+</html>

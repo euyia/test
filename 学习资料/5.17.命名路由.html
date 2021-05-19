@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue/vue.js">
+         /*     //[\s\S]*?\n  ctrl+h 然后用这个正则表达式。点右下角按个替换。。ok
+但是格式 就变的很乱。。其实不怎么好 用。
+
+地址栏上 路由范式
+1  xxx.html#/use/1      params 动态路由参数
+2 ooo.html#/use?userId=1       query
+*/</script>
+    <script src="vue-router/dist/vue-router.js"></script>
+    
+</head>
+<body>
+    <div id="app"></div>
+</body>
+<script>
+            
+    var UserParams ={//加载的是这个组件 获取用户1的时候 如何在这里面获取他的id呢。 就这个id=10
+        template:`<div>我是1</div>`,
+        created(){
+            //这些是vuerouter跑出来挂载到vue实例化的东西。也就是在路由文件里面
+            console.log(this.$router)//$router 就是VueRouter
+            console.log(this.$route.params.id) 
+            //这个$route就是下面的routes里面的那些属性。
+            // 可以找到这个id的人。。然后就可以找到他对应的数据 。。这是以后的应用场景
+            //通过以上两个 我们就可以对实例化的操作 进行操作了
+        }
+    }
+    var UserQuery={
+        template:`<div>我是2</div>`
+    }
+    var router=new VueRouter({
+
+     routes:[                 
+   {
+  path:'/user/:id',//动态路由参数，以冒号开头。
+  name:"userP",
+ component:UserParams        
+     },
+ {
+   path:'/user', 
+   name:'userQ',
+component:UserQuery        
+   },
+        ]
+    });
+      var App={
+        template:    
+             `<div><router-link :to="{name:'userP',params:{id:10}}">我是用户1</router-link>
+          <router-link :to="{name:'userQ',query:{userId:2}}">我是用户2</router-link>
+          <router-view></router-view></div>`,   /*params 里面的id是动态可改
+        有命名之后就可以绑定比较随意了。。可以用name来指定。
+    不用像 5.17.路由 里面 一定要to/login这样。*/             }
+new Vue({
+    el:'#app',
+    data(){
+        return{
+
+        }
+    },
+    components:{
+        App
+    },
+    template:'<App/>',
+     router ,
+})
+    </script>
+</html>

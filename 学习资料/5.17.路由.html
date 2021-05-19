@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue/vue.js">
+    //template编辑 里面的书写 没有补全。很麻烦
+    /*
+    */</script>
+    <script src="vue-router/dist/vue-router.js"></script>
+    
+</head>
+<body>
+    <div id="app"></div>
+</body>
+<script>
+    //Vue.us(VueRouter); 这个脚手架的时候可能需要引入，现在是全局的 所以用
+    //router文档最后里面有那句
+  
+    //上面脚本只是创建引入这个模块 还需要创建对象。
+    //创建路由对象
+    var Resgiter={
+        template:`<div>我是注册页面</div>`
+    }
+    var Login={
+        template:`<div>我是登陆页面</div>`
+    }
+    var router=new VueRouter({
+        //配置路由对象
+        routes:[//这是所有的路由对象 复数
+            //路由匹配的规则
+            {
+path:'/login',//这是路径
+component:Login//就加载这个Login组件。
+            },
+            {
+path:'/register',//这是路径
+component:Resgiter//就加载这个zhuche组件。
+            },
+        ]
+    });
+    //引入vue-router模块 就会给我们抛出来两个全局组件
+    //router-link  这个会被渲染成a标签 然后to属性 。。他router-link to 就相当于a href
+    // router-view 这个就是路由匹配组件的出口。比如上面的login组件就会被渲染到这个里面。
+    var App={
+        template://首页那些按钮 就是锚点值的改变 对应页面的切换。
+        `<div><router-link to="/login">我是登录页面</router-link>
+          <router-link to="/register">我是注册页面</router-link>
+          <router-view></router-view></div>`,//第三行 就是路由组建的出口 就会被渲染到这里来。。其实也就是像组件找爹一样。要挂过来。
+          //template要用闭合标签关闭起来。。div
+    }
+new Vue({
+    el:'#app',
+    data(){
+        return{
+
+        }
+    },
+    components:{
+        App
+    },
+    template:'<App/>',
+    //router:router//上面创建完之后，交给vue实例化对象管理。之后就能在组件 vue里面就能获取路由的相关信息
+    //。因为两个一样 就写成一个。
+    router ,
+})
+    </script>
+</html>

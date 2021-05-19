@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue/vue.js"></script>
+    <script src="vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+
+   
+</body>
+<script>
+var Limin={
+    template:`<div >limin里的内容</div>`,
+};
+
+var  UserParams={
+template:`<div >我是p里的内容  <br><router-link :to="{name:'limin',params:{id:'limin'}}">利民</router-link>
+    <router-link :to="{name:'limin',params:{id:'ruiyu'}}">瑞昱</router-link>
+<router-view></router-view></div>`,//这个id设置了干啥
+};
+var UserQuery={
+template:` <div>我是Q里的内容</div>`,
+};
+var router=new VueRouter({
+ routes:[
+     {path:'/userp',
+     //name:'userP',
+     component:UserParams,
+     children:[
+         {
+             path:'/userp/:id',//如果不行就试下直接id写进去,它上一级直接有/userp，没有用id动态。
+             name:'limin',
+             component:Limin,
+         },
+     ],
+
+     
+      },
+     { path:'/userq',
+     //name:'userQ',
+     component:UserQuery,
+
+     },
+ ]
+})
+    var App={
+        template:` <div>
+        <router-link to="/userp">呼呼P</router-link>
+        <router-link to="/userq">呼呼Q</router-link>
+        <router-view></router-view>
+    </div>`,
+
+    };
+    new Vue({
+        el:'#app',
+        data(){
+return{
+
+}
+        },
+        template:'<App/>',
+        components:{
+            App
+        },
+        router,
+    })
+</script>
+</html>

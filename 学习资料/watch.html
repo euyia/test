@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model='msg'>
+        <h3>{{msg}}</h3>
+    </div>
+</body>
+<script>
+    /* 2监听复杂属性类型的时候。涉及到一个内存地址。。
+    复杂的要 深度监视 比如 object array。这个了解下就行了。 
+    @click="事件名（item）"。。就是把这个事件methods 传到
+    methods下的事件（item）然后触发。
+    1.56分 视频 是成品。。效果也是非常的牛逼。。这个等下中午可以回去看下。。
+
+    计算属性 computed 这个有点绕。。但是可以取代监听到一些watch比较难处理的监听事件、
+ 
+
+
+    github可以去看下 怎么读取。
+    watch 监听data中的各种属性
+    console.log(newV,oldV) 这个是它最基本的框架 后面就可以玩别的
+    比如后面加的if 语句
+    */
+    new Vue({
+        el:'#app',
+        data(){
+            return{
+msg:''
+            }
+        },
+        watch:{//大括号里面可以有很多属性，所以是一个对象 keyvalue
+msg:function(newV,oldV){
+    console.log(newV,oldV);//实时监听
+    if(newV==='你'){
+        console.log("你来了啊")//这个括号意思就是在控制台要显示什么。 上面那个监听也在
+    }
+}
+        }
+    })
+</script>
+</html>

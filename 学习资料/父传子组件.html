@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue/vue.js"></script>
+
+</head>
+<body>
+    <div id="app"></div>
+    
+</body>
+<script>
+Vue.component('Child',{
+   template:`<div><p>我是一个子组件</p>
+    <p><input type="text" v-model="childDate"/></p></div>`
+    ,
+    props:['childDate'] /*这也能拼错。其实报错里面有  直接赋值就好了*/
+});
+Vue.component('Parent',{
+    data(){
+        return{
+            msg:'我是父组件要传递给子组件的数据'
+        }
+    },
+    template:` <div>
+        <Child :childDate='msg'/></div>`
+})
+    var App={
+        template:`<div><Parent/></div>`
+    ,
+    components:{
+
+    }
+    }
+    new Vue({
+        el:'#app',
+        data(){
+            return{
+
+            }
+        },
+        components:{//这个是引用 ，相当于声明
+            App
+        },
+        template:'<App/>'//声明之后还要使用。在这里。
+    })
+</script>
+</html>

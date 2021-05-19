@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title><script src="vue/vue.js">
+/*
+思路开拓 然后对的，常去走，就走通了。。自己可以在脑子里面走。
+机灵点 一致性 多沟通 沟通技巧，没运动容易出问题。没沟通也是。
+1加括号 就是调用方法。。没有就是调用的是对象的值？
+2 funcion() 和()=>{ 效果是一样的
+3$nextTick这个很常用。注意他的语法节奏。focus（）。
+4组件通信的那三种方式尤其。。老师说了.尤其要玩会了*/
+    </script>
+</head>
+<body>
+ 
+    <div id="app"></div>
+</body>
+<script>
+    Vue.component("Test",{
+        data(){
+            return{
+                    msg:"hello world"
+            }
+        },
+        template:`   <div><div>{{msg}}</div></div>`
+    })
+    var App={
+         data(){
+             return{ 
+                 isShow:false,
+
+             }
+         },
+         template:`<div class="app">
+            <input type="text" v-show="isShow" ref="input">
+            <Test/></div> `,
+            //
+           // 在dom渲染完之后
+mounted(){//想让那个input在加载的时候里面获得焦点。
+    this.isShow=true;
+    console.log(this.$refs.input)
+    this.$refs.input.focus();//这个这时候获取不到！！？？？？？
+    //focus 集中 焦点 调节焦距集中。加括号是调用方法！！！
+    this.$nextTick(function(){//nextTick就是dom更新循环结束之后
+        //回调函数，在修改数据之后。也就是上面写的true。能获取修改后的dom
+        //经常用。是对dom跟新之后 进行渲染。
+        this.$refs.input.focus();
+    })
+
+},
+
+    }
+    new Vue({
+        el:"#app",
+        data(){
+            return {
+
+            }
+        },
+        template:"<App/>",
+        components:{
+            App
+        }
+
+        
+    })
+</script>
+</html>

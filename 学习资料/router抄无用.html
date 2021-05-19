@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue/vue.js"></script>
+    <script src="vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+    <div id='app'>
+        <div>
+            <router-link to='/home'> go to Home</router-link>
+            <router-link to='/about'>go to About</router-link>
+
+        </div>
+  <router-view></router-view><!--rout 也有默认的。补充 补成不是自己要的函数-->
+    </div>
+
+</body>
+<script>
+    const Home=Vue.extend({
+        template:'<div><hi>Home</hi><p> 666</p></div>',//看不懂 抄再多感觉没啥用。
+        //因为本身错就会很多。。你不知道什么是对的。抄了没用
+        data:function(){
+           return{msg:'yiqizhen'} 
+        }
+    });
+    const About=Vue.extend({
+        template:' <div><hi>Home</hi><p> 666</p></div>'
+
+    })
+    const router=new VueRouter({
+        routes:[
+            {path:'/home',component:Home},
+            {path:'/about',component:About},
+            {path:'/',component:Home}
+
+        ]
+    })
+    const vm=new Vue({
+        router:router
+    })
+    .$mount("#app");
+</script>
+</html>

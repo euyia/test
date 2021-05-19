@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title><script src="vue/vue.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    
+</body>
+<script>
+Vue.component('ss',{
+    template:`<button>呼呼</button>`,
+});
+
+
+var Vasider={
+    template:`<div>content<ss/><ss/></div>`,
+};
+var Vcontent={
+ template:`<div>asider<ss/></div>`,
+};
+    var App={
+template:`<div><Vcontent/><Vasider/><ss/></div>`,
+components:{//这边要复数的。。全局组件那边才不用。。。
+    Vcontent,
+    Vasider,
+}
+    };
+    new Vue({
+        el:'#app',
+        data(){
+return{
+
+}
+        },
+        template:`<App/>`,//又写大写的。。。。。
+        components:{
+            App
+        }
+    })
+
+</script>
+</html>

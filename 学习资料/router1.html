@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue/vue.js"></script>
+    <script src="vue-router/dist/vue-router.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.css" rel="stylesheet"/>
+</head>
+<body>
+    <div id="app">
+        <router-link to="/home">go to Home</router-link>
+        <router-link to='/about'>Go to About</router-link>
+        <router-view></router-view>
+
+    </div>
+   
+  
+</body>
+<script>
+const Home=Vue.extend({
+    template:'<div><hi>Home</hi><p>{{msg}}</p> </div>',
+    data:function(){
+        return{
+            msg:'道阻且长'
+        }
+    }
+})
+const About=Vue.extend({
+    template:' <div><hi>About</hi><p>行则将至</p></div>'
+})
+const router=new VueRouter({
+    routes:[
+        { path: '/home', component:Home},
+        {path:'/about', component: About},
+        {path:'/',component:Home}
+
+    ]
+});
+const vm=new  Vue({
+    router:router
+})
+.$mount('#app');  
+//就差了一个井号。 字母也拼错。看不懂的代码抄了非常容易错。
+</script>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue/vue.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+
+</body>
+<script> 
+Vue.component("Hs",{//vue中间是.不是空格
+    template:`<button >按钮</button>`//等下把按钮写在value里面试下，不行。？？
+
+})//component 这个函数（）内第一个参数是全局组件的名字，
+//第二个包含的东西和这些局部组件 里面的一样。
+// 局部组件和除了vue里面的el没有，其他都一样。这个全局组件又一个参数和局部组件一个样子。。这样就很好记住。
+  var Vcontent={
+        template:`
+        <div>内容组件<Hs/></div>`
+    }
+ var Vasider={
+    template:`
+    <div>侧部组件<Hs/><Hs/></div>`
+}
+    var Vheader={
+        data(){
+return{
+
+}
+        },
+        template:`
+        <div>头部<Hs/></div>`,
+        //这是结构
+        methods:{
+            //这是业务逻辑
+        }
+
+    }
+    var App={//那这个就相当于根部。
+        template:`
+        <div> <Vheader/><div> <Vasider/>
+            <Vcontent/>
+            </div>
+            </div>`,
+        components:{
+            Vheader,
+            Vcontent,//这三个都是局部组件
+            Vasider
+        }
+    }
+    new Vue({
+        el:'#app',
+        data(){
+            return{
+
+            }
+        },
+        components:{
+            App
+        },
+        template:'<App/>'
+
+        
+    })
+</script>
+</html>

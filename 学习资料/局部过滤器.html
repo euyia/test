@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue/vue.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    
+</body>
+<script>
+    var App={
+        template:`<div><input type="number" v-model='price'>
+            <h3>{{price|myCurrentcy}}</h3></div>`,
+            //这个template 感觉就像body一样 只不过写在了脚本里面。。
+        data(){
+            return{
+                price:0
+            }
+        },
+        filters:{
+            myCurrentcy:function(value){// 这个value又是怎么来的。
+          return "￥"+value
+            }
+        }
+    }
+    new Vue({
+        el:'#app',
+        data(){
+            return{//里面也是一个变量。。
+
+            }
+        },
+        components:{
+            App
+        },
+        template:"<App/>",
+    })
+</script>
+</html>

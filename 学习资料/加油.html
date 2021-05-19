@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title><script src="vue/vue.js">
+
+    </script>
+</head>
+<body>
+    <div id="app"></div>
+</body><script>
+    var App={//这是声明。
+        template:`
+        <div >入口组件</div>`
+
+}
+new Vue({
+    el:'#app',
+    data(){
+        return{
+
+        }
+    },
+    components:{// 组成部分 部件？ 这是挂载
+        App
+    },
+    template:'<App/>' //这是使用
+})
+</script>
+
+</html>

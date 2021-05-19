@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<div id="app">
+----
+<template v-if="ok"><!--v-if 指令用于条件性地渲染一块内容。
+  就是如果条件为真才执行对应元素的功能。。比如文档 ，条件为假的时候
+就不执行文档显示。。类似的  template是不可见的包裹元素。他的意义在于包裹。
+可以同时捆版很多元素 ，一起实现某些功能-->
+  <h1>标题</h1>
+  <p>段落 1</p>
+  <p>段落 2</p>
+</template>
+----
+</div>
+<script>
+var vm = new Vue({
+	el:'#app',
+	data:{
+		ok: 1
+	}
+});
+</script></body>
+</html>

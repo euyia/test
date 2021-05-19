@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <style>
+         
+
+           ul li.active{background-color: aquamarine ;
+
+           }
+           .daxiao{
+               width: 30%;
+           }
+        </style>
+        <script src="vue/vue.js"></script>
+
+    </head>
+    <body><div id="app" class="daxiao">
+        <audio :src="getCurrentSongSrc" autoplay controls></audio>
+        <ul>
+            <li v-for='(item,index) in musicDate' @click="clickHandler(index)" :class='{active:currentIndex===index}'><!--这就相当于active：true 触发class？？
+            这里的冒号。。要是小写的。。冒号小写和大小几乎没有什么区别。是中文的。和英文的。。只有距离的区别。。还是挺明显的。。然后加大括号。意思是里面是一个变量。。-->
+                <!--v-for item就是代表比如下面 就一个框的内容指代。idex指代的是序列顺序号。他们命名这是普通变量的名字。都可以换的。但是你要知道指代什么-->
+             <h2>{{item.id}}-歌名：{{item.name}}</h2>
+             <p>歌手：{{item.author}}</p>
+            </li>
+        </ul>
+    </div>
+        
+
+    </body>
+    <script>
+    //颜色点击响应就是 点击的时候会接收到index索引号。。然后通过model 方法函数取得相应的currentindex...会改变 。。就是实现了两者相等。。
+    // 把函数变量称作要传的值。。。。也就是要传谁
+    //页面就是来更改数据的。。数据改变视图就跟着改变。
+    // 计算属性cumputed是实时监听 一监听到数据变化。就可能会引起其他地方数据的变化。 就是下面三个顺序。有点绕。。但是绕好了这个页面效果会很好。vuex
+       var musicDate=[ {id:1,name:'于梓贝 - 最爱 (Cover_ 周慧敏)',author:'于梓贝',songSrc:'mp3/于梓贝 - 最爱 (Cover_ 周慧敏).mp3'},
+       {id:2,name:'Tones and I - Dance Monkey',author:'Tones',songSrc:'mp3/Tones and I - Dance Monkey.mp3'},
+       {id:3,name:'The Glitch Mob _ Mako _ The Word Alive - RISE',author:'Glitch',songSrc:'mp3/The Glitch Mob _ Mako _ The Word Alive - RISE.mp3'},
+       {id:4,name:'Deep Side - Booty Music',author:'Deep',songSrc:'mp3/Deep Side - Booty Music.mp3'},
+    ];
+    new Vue({
+        el:'#app',
+        data(){
+            return{
+                musicDate:musicDate, //1 在这里声明了两个计算属性。但是这个为什么要写两遍。。还给个冒号？ 拿掉 运行也是可以的。既然老师这样写 就先放着吧。这是声明。所以他们两个只是恰好名字一样而已不是
+                currentIndex:0   //这个return的理解。。？ 看了下百度 意思是这些变量是为了在这个组件里面用。。不会去外面变量污染。老师说这意思是声明变量。还真就这么理解。
+                //声明变量currentInde为啥还要冒号0.。表示他的类型吗？
+            }
+        },
+        computed:{
+            //计算属性默认只有getter
+            getCurrentSongSrc:function(){
+                return this.musicDate[this.currentIndex].songSrc//2在这里监听了 muscidata 和currentindex 全都监听了。监听起来之后
+                //页面渲染的的时候 听到网页前的src
+            }
+        },
+        methods:{//有手法是定义函数的。事件点击之后就是到这里。触发函数方法。
+            clickHandler(index){
+                this.currentIndex=index;//3  当click事件触发这个方法的时候。currentidex就取代当前的index，然后上面的computed里面就监听了变化后的index  然后就直接渲染到rudio上的src上。
+            
+            }
+            
+        }
+    })
+    </script>
+</html>

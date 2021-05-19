@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>练习</title>
+<script src="vue/vue.js"></script>
+
+</head>
+
+<body>
+<div id="div1">
+   
+  <a href="http://12306.com" @click="jump" >正常的链接 http://12306.com</a>
+   
+  <br>
+  <a href="http://12306.com" @click.prevent="jump" >prevent jump()之后的链接 http://12306.com</a>
+  <br>
+  <a href="http://12306.com" @click.prevent >纯prevent之后的链接 http://12306.com</a>
+   
+  <br>
+  <br>
+  <form @submit="jump" action="http://12306.com">
+    <button type="submit">正常的form</button>
+  </form>
+  <form @submit.prevent="jump" action="http://12306.com">
+    <button type="submit">prevent jump()之后的form</button>
+  </form>
+  <form @submit.prevent action="http://12306.com">
+    <button type="submit">纯prevent之后的form</button>
+  </form>
+   
+</div>
+   
+<script>
+new Vue({
+	el:'#div1',
+	data:{
+	},
+	methods:{
+		jump:function(){
+			alert("jump()函数被调用");
+		}
+	}
+})
+</script>
+</body>
+</html>

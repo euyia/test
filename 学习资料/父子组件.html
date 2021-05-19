@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue/vue.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+
+</body>
+<script> 
+Vue.component('Child',{
+    template:`<div> <P> 我是一个子组件</P>
+        <P> <input type="text" v-model='childDate'/></P>
+            </div>`,
+            props:['childDate']/*
+            复数可以接收很多信息。
+            父传子的步骤
+            1 先在父组件中绑定自定义属性
+            2，在子组件中建立props接收
+            3只要接受 ，可以在子组件中任意使用。
+            其实就是在父组件嵌套的子组件中定义属性，然后绑定父组件的data，
+            然后通过props绑定子组件，就在子组件中使用*/
+})
+    
+Vue.component('Parent',{
+    data(){
+        return{
+            msg:'我是父组件要传递给子组件的数据'//格式引号，  要多写
+        }//通过声明这个data来和自定义属性Childate进行绑定。
+    },
+    template:`<div> <P> 我是一个父组件</P>
+        <Child :childDate='msg'/>
+            </div>`//Child挂在父组件里来。。 这个child这个要空格。
+})
+    var App={//那这个就相当于根部。 有时候不看App 这个只是一个挂载的效果。！！！
+        template://这个全局Parent组件 app能往里面传值。怎么传？？
+        `
+        <div> <Parent/>
+            </div>`,
+        components:{
+           
+        }
+    }
+    new Vue({
+        el:'#app',
+        data(){
+            return{
+
+            }
+        },
+        components:{
+            App
+        },
+        template:'<App/>'
+
+        
+    })
+</script>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title><script src="vue/vue.js">
+//造梯子。。。然后把那个之前给我的那个样式按钮做出来。 背d
+//口才很好 技术能力为根本。。
+//官网是vue做的。主要还是数据驱动 的概念。。每一句话都要去理解一下。。
+//例子演示去试下。。出问题就问下。以后多用 就会了。。。这是以后没看视频自学可以这样搞。
+//后端 phton。java有基础再去搞会很简单。干一行喜欢一行
+
+
+
+/*1如果没有template 则在el的div当作模板
+beforeMount 有创建一个虚拟Dom.通过render函数。用一个creatElement方法。。返回来值 就是虚拟dom
+然后真实的dom全部渲染完 之后。用真实的dom替换掉虚拟dom
+mounted 渲染完之后 就在里面改变数据。数据驱动视图。
+数据更改玩 update 之后重新render。。。然后更新更新更新一直mounted那个圈圈里循环。
+页面里做的最多的还是上句里的循环
+destory 基本就是@click销毁之类？？事件监听器。或者挂载的子组件。。
+也就是组件的创建销毁。。创建和销毁。。
+*/
+    </script>
+</head>
+<body>
+ <p>
+     created 就是把那些元素注入之后
+     <br>
+ </p>
+    <div id="app"></div>
+</body>
+<script>
+    Vue.component("Test",{
+        data(){
+            return{
+                    msg:"hello world"
+            }
+        },
+        template:`   <div><div>{{msg}}</div></div>`
+    })
+    var App={
+         data(){
+             return{
+
+             }
+         },
+         template:`<div class="app">
+            <Test/></div> `,
+
+    }
+    new Vue({
+        //el:"#app",
+        data(){
+            return {
+
+            }
+        },
+        template:"<App/>",
+        components:{
+            App
+        }
+        //如果没有el 则用下面的方法。是获取对象的救命稻草
+        .$mount(document.querySelector("#app"))
+        //这个格式 他不是一个分支。。。是冒号接上面的。。
+
+        
+    })
+</script>
+</html>

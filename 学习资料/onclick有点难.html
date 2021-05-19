@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+ 
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<div id="app">
+<button v-on:click="greet">打招呼</button>
+<button v-on:click="say('嗨')">说 嗨</button>
+<button v-on:click="say('为什么', $event)">说 为什么</button><!--用特殊变量 $event 传入方法-->
+</div>
+<script>
+var vm = new Vue({
+  el:'#app',
+  data: {
+      name: "Loen"
+  },
+  methods: {
+    greet: function (event) {
+      // `this` 在方法里指向当前 Vue 实例
+      alert('你好 ' + this.name + '!')
+      // `event` 是原生 DOM 事件
+      if (event) {
+        alert(event.target.tagName)//target 目标 靶子
+      }
+    },
+    say: function(msg, event){
+      alert(msg);
+
+      if(event){
+        alert(event.target.tagName)
+      }
+
+    }
+  }
+});
+
+// 也可以用 JavaScript 直接调用方法
+// vm.greet() // => 'Hello Vue.js!'
+</script>
+</body>
+
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<div id="app">
+<ul id="example-1">
+  <li v-for="(item, index) in items">
+    {{ parentMessage }} - {{ index }} - {{ item.message }}
+    <!--这个index没有定义 这是系统默认的符号吗。。直接知道是序列
+    index 中文是索引。。但是代码里面有定义吗  index这边并没有定义
+直接就是序列。。。？？？？ 而且括号内 item 和index的位置 也有点另类
+语言就是工具而已。工具又是什么类别 ？
+就像说话方言本质就是声音。声音只要满足一个条件就行-->
+  </li>
+</ul>
+</div>
+<script>
+var vm = new Vue({
+	el:'#app',
+	data: {
+    parentMessage: "I am parentMessage",
+    items: [
+      { message: 'Loen' },
+      { message: 'Nier' },
+      { message: 'Kelly' }
+    ]
+  }
+});
+</script>
+</body>
+</html>

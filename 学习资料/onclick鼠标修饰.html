@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+
+<button @click.right="greet">鼠标右键点击(Greet)</button>
+
+<button @click.left="say('嗨')">鼠标左键点击(说 嗨)</button>
+
+<button @click.middle="say('为什么')">鼠标中间按钮点击(说 为什么)</button>
+
+</div>
+
+<script>
+
+var vm = new Vue({
+
+  el:'#app',
+
+  data: {
+
+      name: "Loen"
+
+  },
+
+  methods: {
+
+    greet: function (event) {
+//methods里面的函数名event是从哪里来的。。又没定义。？？？
+// 说是事件监听 其实就是事件触发的方式。。
+//比如以前都是click出发。现在各种方式了。。keydown触发。
+
+      alert('你好 ' + this.name + '!')
+
+    },
+
+    say: function(msg, event){
+
+      alert(msg);
+
+    }
+
+  }
+
+});
+
+</script>
+</body>
+</html>

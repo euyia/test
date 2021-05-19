@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue/vue.js"></script>
+    <script src="vue-router/dist/vue-router.js">/*
+    大的。。东西要用；隔开。小的要用逗号隔开
+    男人要i雄起，不要那样子喂喂的。要自信*/</script>
+
+</head>
+<body>
+    <div id="app"></div>
+   
+    
+</body>
+<script>
+var UserParams={
+    template:`<div>用户P里的内容</div>`,
+};
+var UserQuery={
+    template:`<div>用户Q里的内容</div>`,
+    
+};
+var router=new VueRouter({
+        routes:[{
+           path:'/user/:id' ,
+           name:'userP',
+           component:UserParams,//这里不要像挂载vue一样。。这里是单数 不是复数。
+        },
+        {
+            path:'/user' ,
+           name:'userQ',
+           component:UserQuery,
+        }
+        
+
+        ]
+    });
+    var App={
+        template:`<div><router-link :to="{name:'userQ',query:{userId:2}}">用户q</router-link>
+        <router-link :to="{name:'userP',params:{id:10}}">我是用户p</router-link>
+        <router-view></router-view>
+
+    </div>`
+    };//这个用逗号隔开竟然不行。。！！！！大的。。东西要用；隔开。小的要用逗号隔开
+    new Vue({
+        el:'#app',
+    data(){
+        return{
+
+        }
+    },
+    template:"<App/>",
+        components:{
+            App
+        },
+        router,
+
+    })
+</script>
+</html>

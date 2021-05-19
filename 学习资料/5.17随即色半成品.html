@@ -1,0 +1,47 @@
+<!-- Use preprocessors via the lang attribute! e.g. <template lang="pug"> -->
+   <html>
+       <head>
+<script src="vue/vue.js"></script>
+       </head>
+       <body>
+          <!--<template></template>-->  
+        <div id="app">
+          <ul>
+            <li :style="randomRgb(item)"><br>1）如果vue实例中有template属性，会将该属性值进行编译，将编译后的虚拟dom直接替换掉vue实例绑定的元素（即el绑定的那个元素）；
+               <br> 2）template属性中的dom结构只能有一个根元素，如果有多个根元素需要使用v-if、v-else、v-else-if设置成只显示其中一个根元素；
+                <br> 3）在该属性对应的属性值中可以使用vue实例data、methods中定义的数据。
+                
+                </li>
+          </ul>
+        </div>
+      
+      
+</body>
+      <script>
+      export default {
+        data() {
+          return {
+            message: 'Welcome to Vue!'
+          };
+        },
+        methods: {
+         randomRgb(item) {
+            let R = Math.floor(Math.random() * 130+110);
+            let G = Math.floor(Math.random() * 130+110);
+            let B = Math.floor(Math.random() * 130+110);
+            return {
+              background: 'rgb(' + R + ',' + G + ',' + B + ')'
+              };
+          }
+      
+        }
+      };
+      </script>
+      
+      <!-- Use preprocessors via the lang attribute! e.g. <style lang="scss"> -->
+      <style>
+       
+      </style>
+       
+   </html>
+   

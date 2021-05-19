@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <br> {{msg}}
+    </div>
+    
+</body>
+<script>Vue.component('Child',{
+
+    template:`<div><p>。。。</p>
+    <p><input type="text" v-model='childDate'
+         @input='changeValue(childDate)'/>
+        </p></div>`,//props接收了childDate就可以在input或者其他标签里用
+       //childDate 属性传到上面。在methods里面接收
+        props:['childDate'],
+        methods:{
+            changeValue(val){
+                //函数中
+                // $emit（自定义事件名，消息）
+                this.$emit('childHander',val)
+                //再把val这数据传到父组件中的methods
+            }
+        }
+})
+Vue.component('Parent',{
+    data(){
+        return{
+            msg:'这是父组件对你的爱'
+        }
+    },
+    template:`<div><p></p>
+    <p><Child :childDate='msg' @childHandler='childHandler'/></p></div>`,
+    //这个childHandle.r事件是在下面呢methods里面声明的
+    methods:{
+        childHandler(val){
+            sonsole.log(val);
+
+        }
+    },
+})/*子传父步骤 前端就是通过字符串去拼凑功能。字符串最原始的,当作一个程序员
+1 在父组件里面绑定自定义事件
+2在子组件中触发原生事件。在函数中使用$emit触发自定义的childHandler*/
+    var App={
+        template:` <div><Parent/></div>`
+    }
+    new Vue({
+        el:'#app',
+        data(){
+            return{
+
+            }
+        },
+        //几个容易漏的符号 一个是vue里面属性之间的逗号，
+        components:{
+            App
+        },
+        template:'<App/>'
+    })
+</script>
+</html>
